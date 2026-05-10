@@ -72,7 +72,7 @@ ERDS-Lite/
 Navigate to the project directory and compile using:
 
 ```bash
-g++ main.cpp -o ERDS
+g++ main.cpp -o ERDS.exe
 ```
 
 ---
