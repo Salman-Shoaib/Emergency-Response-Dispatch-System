@@ -1,73 +1,186 @@
-ERDS Lite: Emergency Response Dispatch System
-ERDS Lite is a high-performance C++ application designed to manage and optimize emergency response workflows. The system simulates a city-wide dispatch center, handling real-time incident logging, vehicle tracking, and automated dispatching using custom-built data structures.
+# 🚑 ERDS Lite: Emergency Response Dispatch System
 
-🚀 Key Features
-Priority-Based Incident Logging: Automatically ranks incoming emergencies (Medical, Fire, Crime) based on urgency levels using a priority queue.
+ERDS Lite is a high-performance **C++ application** designed to manage and optimize emergency response workflows. The system simulates a city-wide dispatch center, handling real-time incident logging, vehicle tracking, and automated dispatching using custom-built data structures.
 
-Proximity-Aware Dispatching: Uses graph traversal to identify the closest available response unit (Ambulance, Fire Truck, or Police Car) based on location IDs.
+---
 
-Dynamic City Mapping: Manage city locations and road networks in real-time, allowing for a flexible response environment.
+# 🚀 Key Features
 
-Administrative Oversight: Track maintenance tasks, view command history, and generate historical incident reports.
+## 🔥 Priority-Based Incident Logging
+Automatically ranks incoming emergencies (**Medical, Fire, Crime**) based on urgency levels using a **priority queue (Min-Heap)**.
 
-State Persistence: Saves the entire system state—including incidents, vehicles, and the city graph—to a local file to resume operations later.
+## 🚓 Proximity-Aware Dispatching
+Uses graph traversal algorithms to identify the **closest available response unit** (Ambulance, Fire Truck, or Police Car) based on location IDs.
 
-🛠️ Data Structures Implemented
-This project avoids standard libraries to implement custom, high-efficiency data structures tailored for emergency dispatch:
+## 🗺️ Dynamic City Mapping
+Manage city locations and road networks in real time, allowing a flexible and scalable response environment.
 
-Component	Data Structure	Purpose
-Incident Management	Min-Heap	Enables O(1) access to the most urgent pending incidents.
-Vehicle Tracking	Hash Table	Provides O(1) average-case lookup and status updates for vehicles using chaining.
-City Map	Adjacency List Graph	Represents city locations and roads for traversal and distance tracking.
-Response History	AVL Tree	Stores resolved incidents in a self-balancing BST for O(logn) searching.
-Command Log	Stack	Tracks administrative actions in a LIFO manner for history viewing.
-Maintenance	Queue	Manages system tasks in a fair, FIFO (First-In, First-Out) order.
-📂 File Structure
-The project is organized into modular components, each responsible for a specific data structure or system logic:
+## 📊 Administrative Oversight
+Track maintenance tasks, view command history, and generate historical incident reports.
 
-main.cpp: Entry point providing the CLI-based management menu.
+## 💾 State Persistence
+Saves the entire system state — including incidents, vehicles, and the city graph — to a local file so operations can resume later.
 
-ERDS.cpp: Central controller integrating all data structures and business logic.
+---
 
-IncidentHeap.cpp: Implementation of the urgency-based priority heap.
+# 🛠️ Data Structures Implemented
 
-VehicleHash.cpp: Implementation of the chained hash table for vehicle management.
+This project avoids relying heavily on STL containers and instead implements custom high-efficiency data structures tailored for emergency dispatch operations.
 
-CityGraph.cpp: Logic for city navigation and BFS-based resource locating.
+| Component | Data Structure | Purpose |
+|----------|----------------|---------|
+| Incident Management | Min-Heap | Enables efficient access to the most urgent pending incidents |
+| Vehicle Tracking | Hash Table | Provides O(1) average-case lookup and updates using chaining |
+| City Map | Adjacency List Graph | Represents city locations and road networks |
+| Response History | AVL Tree | Stores resolved incidents with O(log n) search performance |
+| Command Log | Stack | Tracks recent administrative actions in LIFO order |
+| Maintenance Tasks | Queue | Manages pending tasks using FIFO scheduling |
 
-HistoryAVL.cpp: Self-balancing tree for searchable resolved incident logs.
+---
 
-CommandStack.cpp: Logic for tracking recent user commands.
+# 📂 Project Structure
 
-TaskQueue.cpp: Queue implementation for pending maintenance tasks.
+```bash
+ERDS-Lite/
+│
+├── main.cpp              # Entry point and CLI menu system
+├── ERDS.cpp              # Core system controller and business logic
+├── IncidentHeap.cpp      # Min-Heap implementation for incidents
+├── VehicleHash.cpp       # Chained hash table for vehicle management
+├── CityGraph.cpp         # Graph traversal and city mapping logic
+├── HistoryAVL.cpp        # AVL Tree for resolved incident records
+├── CommandStack.cpp      # Stack for command history tracking
+├── TaskQueue.cpp         # Queue for maintenance task management
+│
+└── data/
+    └── state.txt         # Saved system state
+```
 
-💻 Getting Started
-Prerequisites
-A C++ compiler (e.g., GCC/G++).
+---
 
-Compilation
+# ⚙️ Getting Started
+
+## 📋 Prerequisites
+
+- A C++ compiler such as **GCC/G++**
+- Terminal or command prompt
+
+---
+
+# 🧩 Compilation
+
 Navigate to the project directory and compile using:
 
-Bash
+```bash
 g++ main.cpp -o ERDS
-Running the System
-Bash
+```
+
+---
+
+# ▶️ Running the System
+
+### Linux / macOS
+
+```bash
 ./ERDS
-🎮 Usage
-The system operates through a menu-driven interface:
+```
 
-Log Incident: Enter ID, location, type, and urgency (1-5).
+### Windows
 
-Dispatch Next: Automatically assigns the nearest available vehicle to the highest-priority incident.
+```bash
+ERDS.exe
+```
 
-Add/Remove Vehicle: Register or remove emergency units from the system.
+---
 
-Map Menu: Add or remove locations and roads to update the city topography.
+# 🎮 Usage Guide
 
-Admin/Reports: View historical data, pending tasks, and recent command logs.
+The application operates through a **menu-driven CLI interface**.
 
-Author: Salman Shoaib
+## 📌 Available Operations
 
-Student ID: 24P-0583
+### 🚨 Log Incident
+Enter:
+- Incident ID
+- Location ID
+- Emergency Type
+- Urgency Level (1–5)
 
-Institution: FAST NUCES Islamabad
+---
+
+### 🚑 Dispatch Next Incident
+Automatically:
+- Selects the highest-priority incident
+- Finds the nearest available response vehicle
+- Dispatches the unit
+
+---
+
+### 🚓 Vehicle Management
+- Add emergency vehicles
+- Remove vehicles
+- Update vehicle availability
+
+---
+
+### 🗺️ Map Management
+- Add locations
+- Remove locations
+- Create or delete roads between locations
+
+---
+
+### 📈 Reports & Administration
+- View resolved incidents
+- Check maintenance queue
+- Display command history
+- Generate historical reports
+
+---
+
+# 🧠 Core Concepts Used
+
+- Object-Oriented Programming (OOP)
+- Graph Traversal Algorithms
+- AVL Tree Rotations
+- Heap Operations
+- Hashing with Chaining
+- Queue and Stack Management
+- File Handling & Persistence
+
+---
+
+# 📊 Time Complexity Overview
+
+| Operation | Complexity |
+|-----------|------------|
+| Insert Incident | O(log n) |
+| Get Highest Priority Incident | O(1) |
+| Vehicle Lookup | O(1) average |
+| Graph Traversal (BFS) | O(V + E) |
+| AVL Insert/Search | O(log n) |
+| Queue Operations | O(1) |
+| Stack Operations | O(1) |
+
+---
+
+# 🔮 Future Improvements
+
+- GUI-based control panel
+- GPS-based shortest path routing
+- Real-time vehicle tracking
+- Multi-threaded dispatch engine
+- Database integration
+- Networked multi-user support
+
+---
+
+# 👨‍💻 Author
+
+Developed as a **Data Structures Project** focused on building real-world systems using custom implementations of fundamental data structures in C++.
+
+---
+
+# 📜 License
+
+This project is open-source and available for educational and learning purposes.
